@@ -1,0 +1,28 @@
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-dotenv==1.0.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# LLM and AI
+openai==1.10.0
+anthropic==0.18.0
+tiktoken==0.5.2
+
+# RAG and Vector Store
+chromadb==0.4.22
+sentence-transformers==2.3.1
+langchain==0.1.6
+langchain-community==0.0.20
+
+# Data Processing
+numpy==1.26.3
+pandas==2.2.0
+
+# Utilities
+python-multipart==0.0.6
+aiofiles==23.2.1
+httpx==0.26.0
+
+# Monitoring and Logging
+loguru==0.7.2
