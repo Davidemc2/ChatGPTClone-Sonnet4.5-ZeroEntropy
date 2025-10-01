@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  zero-entropy-chat:
+    build: .
+    container_name: zero-entropy-chat
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - DEFAULT_MODEL=${DEFAULT_MODEL:-gpt-4}
+      - TEMPERATURE=${TEMPERATURE:-0.7}
+      - REDIS_HOST=redis
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - zero-entropy-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: zero-entropy-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - zero-entropy-network
+
+volumes:
+  redis-data:
+
+networks:
+  zero-entropy-network:
+    driver: bridge
